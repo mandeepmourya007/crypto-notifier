@@ -1,28 +1,20 @@
 import React from 'react';
 
 const Stockrow = props => {
+      
+      var temp = [];
+      temp = props.item;
+      var ky = Object.keys(temp)
+      
+      var ans = [];
 
-    if (props.items.length === 0) {
-        return (
-          <div >
-              <h2>No Rows</h2>
-          </div>
-        );
+      for(var i = 0; i < ky.length; i++) 
+      {
+        ans.push(<td> {temp[ky[i]]} </td>)
       }
-    
+
       return (
-
-  
-            
-        props.items.map(stock => 
-          <tr> 
-            <td> {stock.name} </td>
-            <td> {stock.curval} </td>
-            <td> {stock.lowval} </td>
-            <td> {stock.higval} </td>
-          </tr>
-            )
-
+         <tr> {ans} </tr>
       );
 }
 
