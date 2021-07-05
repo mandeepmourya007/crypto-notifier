@@ -1,11 +1,32 @@
+import React from 'react';
+import Stockheader from './Components/stocklist/Stockheader';
+import './better.css';
 
-import './App.css';
-
-function App() {
+const App = () => {
 
   return (
+      
+    <body >
 
-        <h1> Yoo Stockers !</h1>
+    <table>
+
+      <tr>
+        <th> Name </th>
+        <th> Current Value </th>
+        <th> Low </th>
+        <th> High </th>
+      </tr> 
+
+      <Stockheader /> 
+      
+
+    </table> 
+
+    </body>
+
+    
+
+
   );
 }
 
