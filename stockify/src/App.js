@@ -9,8 +9,8 @@ const App = () => {
   const [crypto, setCrypto] = useState([]);
   const [search_txt, setSearch] = useState("");
   const headers = ["name",
-    "price",
     "symbol",
+    "price",
     "marketcap",
     "volume",
     "image",
@@ -18,7 +18,7 @@ const App = () => {
 
   const getdata = async () => {
     try {
-      const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false');
+      const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false');
       const data = await res.json();
 
       console.log(data)
@@ -43,7 +43,8 @@ const App = () => {
   const getInput = (e) => {
     setSearch(e.target.value)
   }
-  ROWS = crypto //.filter(search_txt);
+  ROWS = crypto.filter(c =>
+    c.name.toLowerCase().includes(search_txt.toLowerCase()));
   return (
 
     <html className="bg">
