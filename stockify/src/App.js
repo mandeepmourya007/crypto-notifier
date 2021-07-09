@@ -1,187 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Stockheader from './Components/stocklist/Stockheader';
+// import Stockheader from "./Components/stocklist/Stockheader"
 import './table.css';
 import './header.css';
 import Stocklist from './Components/stocklist/Stocklist';
 
 const App = () => {
+  const [crypto, setCrypto] = useState([]);
+  const [search_txt, setSearch] = useState("");
+  const headers = ["name",
+    "price",
+    "symbol",
+    "marketcap",
+    "volume",
+    "image",
+    "priceChange"]
 
+  const getdata = async () => {
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false');
+      const data = await res.json();
 
-  const ROWS = [
-    {
-        Name: 'A',
-        Curval: 100,
-        Lowval: 50,
-        Higval: 150
+      console.log(data)
+      setCrypto(data);
+
+    } catch (error) {
+
     }
+  }
 
-    ,
+  useEffect(() => {
+    getdata();
 
-    {
-      Name: 'A',
-      Curval: 100,
-      Lowval: 50,
-      Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
+    console.log("crypto", crypto);
 
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-   ,
-   {
-    Name: 'A',
-    Curval: 100,
-    Lowval: 50,
-    Higval: 150
-   }
-];
 
+  }, [])
+
+
+  var ROWS = crypto
+
+  const getInput = (e) => {
+    setSearch(e.target.value)
+  }
+  ROWS = crypto //.filter(search_txt);
   return (
 
-  <html className = "bg">  
-  <body>
+    <html className="bg">
+      <body>
+        <div class="topnav">
+          <a class="active" href="#home">MANDEEP</a>
+          <a href="#about">SANJAY</a>
+          <a href="#contact">TARUN</a>
+          <input type="text" placeholder="Broo.." onChange={getInput} />
+        </div>
 
-    <div class="topnav">
-        <a class="active" href="#home">MANDEEP</a>
-        <a href="#about">SANJAY</a>
-        <a href="#contact">TARUN</a>
-        <input type="text" placeholder="Broo.." />
-    </div>
+        <br />
 
-    <br />
+        <table id="table">
+          <tr>
 
-    <table  id="table">   
-      <tr>
-        <Stockheader items = {Object.keys(ROWS[0])}/>
-      </tr>
-        <Stocklist items = {ROWS}/>
-    </table>
+            {/* <Stockheader items={Object.keys(ROWS[0])} /> */}
+            <Stockheader items={headers} />
+          </tr>
+          <Stocklist yo={ROWS} />
+        </table>
 
-  </body>
-  </html>
+      </body>
+    </html>
 
   );
 }
