@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +16,7 @@ const Stockrow = props => {
   //   ans.push(<td> {temp[ky[i]]} </td>)
   // }
 
-
+  const [icon, seticon] = useState(faPlusCircle)
   let item = {
     "name": props.name,
     "symbol": props.symbol,
@@ -26,13 +26,17 @@ const Stockrow = props => {
     "image": props.image,
     "priceChange": props.priceChange
   }
+  const process = (e) => {
+    props.addtofav(e)
+    seticon(faMinusCircle == icon ? faPlusCircle : faMinusCircle)
+  }
 
 
   return (
 
 
     <tr>    <td> {props.name}</td>
-      <td>  <img src={props.image} width="50px" onClick={props.addtofav} id={props.name} /> <FontAwesomeIcon icon={faMinusCircle} /> </td>
+      <td>  <img src={props.image} width="50px" onClick={process} id={props.name} /> <FontAwesomeIcon icon={icon} /> </td>
       <td> {props.price}</td>
       <td> {props.symbol}</td>
       <td> {props.marketcap}</td>
