@@ -1,6 +1,7 @@
 import React from 'react';
+import Stockrow from './Stockrow';
 
-const Stockheader = props => {
+const FavouriteHead = props => {
     
 
   return (
@@ -12,4 +13,4 @@ const Stockheader = props => {
   );
 }
 
-export default Stockheader;
+export default FavouriteHead;

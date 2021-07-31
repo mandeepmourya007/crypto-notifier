@@ -1,13 +1,12 @@
-import React from 'react'
-import Stockrow from './Stockrow';
+import React , { useState } from 'react'
+import FavouriteHeadRows from './FavouriteHeadRows';
 
-const Stocklist = props => {
-  
+const FavouriteHeadlist = props => {
 
+  console.log(props.yo1, " yo1");
 
+  if (props.yo1.length === 0) {
 
-  
-  if (props.yo.length === 0) {
     return (
       <tr >
         <h2>No Rows</h2>
@@ -17,8 +16,8 @@ const Stocklist = props => {
 
   // console.log("inem chek", props.items)
   return (
-    props.yo.map(coin =>
-      <Stockrow
+    props.yo1.map(coin =>
+      <FavouriteHeadRows
         key={coin.id}
         name={coin.name}
         price={coin.current_price}
@@ -26,9 +25,9 @@ const Stocklist = props => {
         marketcap={coin.total_volume}
         volume={coin.market_cap}
         image={coin.image}
-        priceChange={coin.price_change_percentage_24h} addtofav = {props.addtofav} />
+        priceChange={coin.price_change_percentage_24h} />
     )
   );
 }
 
-export default Stocklist;
+export default FavouriteHeadlist;
