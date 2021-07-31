@@ -57,7 +57,7 @@ const App = () => {
 
 
   const [show, setShow] = useState(false);
-  
+
   const [isShowLogin, setIsShowLogin] = useState(false);
 
   const [isShowsignup, setIsShowsignup] = useState(false);
@@ -68,21 +68,25 @@ const App = () => {
 
 
 
-  const [fav, setFav]  = useState([]);
+  const [fav, setFav] = useState([]);
 
-  const addRow  = () => {
+  const addRow = (e) => {
 
     let item = {
-      "name" : 1,
-    "symbol" : 2,
-    "price": 3,
-    "marketcap": 4,
-    "volume": 5,
-    "image":6,
-    "priceChange": 7
-    } 
+      "name": 1,
+      "symbol": 2,
+      "price": 3,
+      "marketcap": 4,
+      "volume": 5,
+      "image": 6,
+      "priceChange": 7
+    }
 
+    console.log(e.target.id)
+    item = crypto.filter(c =>
+      c.name == e.target.id);
 
+    // console.log(e)
     setFav(fav => fav.concat(item));
     // setFav(fav.push(item));
 
@@ -99,7 +103,7 @@ const App = () => {
 
     <html className="bg">
       <body>
-        
+
         <div class="topnav">
 
           <a class="active" href="#home">MANDEEP</a>
@@ -107,19 +111,19 @@ const App = () => {
           <a href="#contact">TARUN</a>
 
 
-          <a  onClick={() => setShow(true)}>FAVOURITE</a>
-            <Modal title="My Favourits Crypto.." onClose={() => setShow(false)} show={show} yo = {fav} />
+          <a onClick={() => setShow(true)}>FAVOURITE</a>
+          <Modal title="My Favourits Crypto.." onClose={() => setShow(false)} show={show} yo={fav} />
 
 
-          <input type="text" placeholder="Broo.." onChange={getInput} /> 
+          <input type="text" placeholder="Broo.." onChange={getInput} />
 
-          <a class = "login" onClick={() => setIsShowLogin(true)}>LogIN</a>
-            <LoginForm title="Sign UP" onClose = {() => setIsShowLogin(false)} isShowLogin = {isShowLogin} /> 
+          <a class="login" onClick={() => setIsShowLogin(true)}>LogIN</a>
+          <LoginForm title="Sign UP" onClose={() => setIsShowLogin(false)} isShowLogin={isShowLogin} />
 
-          <a class = "signup" onClick={() => setIsShowsignup(true)}>SignUP</a>
-          <Signup title="Sign UP" onClose = {() => setIsShowsignup(false)} isShowsignup = {isShowsignup} />
+          <a class="signup" onClick={() => setIsShowsignup(true)}>SignUP</a>
+          <Signup title="Sign UP" onClose={() => setIsShowsignup(false)} isShowsignup={isShowsignup} />
 
-      
+
         </div>
 
         <br />
@@ -128,7 +132,7 @@ const App = () => {
           <tr>
             <Stockheader items={headers} />
           </tr>
-          <Stocklist yo={ROWS} addtofav = { addRow } />
+          <Stocklist yo={ROWS} addtofav={addRow} />
         </table>
 
       </body>
