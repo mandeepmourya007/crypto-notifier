@@ -109,10 +109,11 @@ const App = () => {
 
         <div class="topnav">
 
-          <a class="active" href="#home">MANDEEP</a>
+          {/* <a class="active" href="#home">MANDEEP</a>
           <a href="#about">SANJAY</a>
-          <a href="#contact">TARUN</a>
+          <a href="#contact">TARUN</a> */}
 
+          <a href="/" class="">  <img src="BTC.png" width="25px" />CRYPTO</a>
 
           <a onClick={() => setShow(true)}>FAVOURITE</a>
           <Modal title="My Favourits Crypto.." onClose={() => setShow(false)} show={show} yo={fav} />
@@ -139,7 +140,7 @@ const App = () => {
         </table>
 
       </body>
-    </html>
+    </html >
 
   );
 }
