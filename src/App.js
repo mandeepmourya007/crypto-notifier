@@ -71,28 +71,31 @@ const App = () => {
   const [fav, setFav] = useState([]);
 
   const addRow = (e) => {
-
-    let item = {
-      "name": 1,
-      "symbol": 2,
-      "price": 3,
-      "marketcap": 4,
-      "volume": 5,
-      "image": 6,
-      "priceChange": 7
-    }
     let already = fav.filter(c =>
       c.name == e.target.id)
     console.log(e.target.id)
 
     if (already.length === 0) {
-      item = crypto.filter(c => c.name == e.target.id);
+      let item = crypto.filter(c => c.name == e.target.id);
       setFav(fav => fav.concat(item));
+    }
+    else {
+      let items = fav.filter(c => c.name != e.target.id);
+      setFav(items);
+
     }
 
   }
 
 
+  // const removeRow = (e) => {
+  //   let already = fav.filter(c =>
+  //     c.name == e.target.id)
+  //   console.log(e.target.id)
+  //   if (already==)
+
+
+  // }
 
 
 

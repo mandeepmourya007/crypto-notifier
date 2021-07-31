@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal';
 
 const Stockrow = props => {
@@ -32,7 +32,7 @@ const Stockrow = props => {
 
 
     <tr>    <td> {props.name}</td>
-      <td>  <img src={props.image} width="50px" onClick={props.addtofav} id={props.name} /> <FontAwesomeIcon icon={faPlusCircle} /> </td>
+      <td>  <img src={props.image} width="50px" onClick={props.addtofav} id={props.name} /> <FontAwesomeIcon icon={faMinusCircle} /> </td>
       <td> {props.price}</td>
       <td> {props.symbol}</td>
       <td> {props.marketcap}</td>
