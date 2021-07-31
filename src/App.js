@@ -81,14 +81,14 @@ const App = () => {
       "image": 6,
       "priceChange": 7
     }
-
+    let already = fav.filter(c =>
+      c.name == e.target.id)
     console.log(e.target.id)
-    item = crypto.filter(c =>
-      c.name == e.target.id);
 
-    // console.log(e)
-    setFav(fav => fav.concat(item));
-    // setFav(fav.push(item));
+    if (already.length === 0) {
+      item = crypto.filter(c => c.name == e.target.id);
+      setFav(fav => fav.concat(item));
+    }
 
   }
 
